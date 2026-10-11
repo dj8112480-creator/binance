@@ -7,8 +7,11 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #000000; color: #ffffff; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
         .phone-canvas { width: 100%; max-width: 412px; min-height: 100vh; background-color: #181a20; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
-        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; letter-spacing: -0.3px; }
         .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+        .signal-bars { display: flex; align-items: flex-end; gap: 1.5px; height: 11px; margin-right: 2px; }
+        .signal-bar { width: 2.5px; background: #fff; border-radius: 0.5px; }
+        .sb-1 { height: 3px; } .sb-2 { height: 5px; } .sb-3 { height: 7.5px; } .sb-4 { height: 10px; }
         .ios-battery { display: flex; align-items: center; gap: 3px; }
         .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #fff; padding: 1.5px; display: flex; align-items: center; }
         .bat-fill { height: 100%; border-radius: 1.5px; background: #fff; }
@@ -21,7 +24,7 @@
         .with-row { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #2b3139; padding-bottom: 14px; }
         .with-lbl { color: #848e9c; }
         .with-val { color: #ffffff; font-weight: 500; text-align: right; word-break: break-all; max-width: 230px; font-family: monospace; font-size: 13px; }
-        .btn-with-action { display: block; text-align: center; background: #f3ba2f; color: #181a20; font-weight: 700; padding: 14px; border-radius: 8px; font-size: 15px; margin: 25px 16px; }
+        .btn-with-action { display: block; text-align: center; background: #f3ba2f; color: #181a20; font-weight: 700; padding: 14px; border-radius: 8px; font-size: 15px; margin: 25px 16px; text-decoration: none; }
         .back-link { display: block; text-align: center; padding: 12px; background: #121214; color: #f3ba2f; text-decoration: none; font-size: 12px; font-weight: bold; border-top: 1px solid #2b3139; }
     </style>
 </head>
@@ -29,7 +32,12 @@
     <div class="phone-canvas">
         <div class="status-bar">
             <span id="wtTime">8:35</span>
-            <div class="sb-right"><span id="wtNet">5G</span> <span id="wtBatNum">85%</span><div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="wtBatFill"></div></div><div class="bat-tip"></div></div></div>
+            <div class="sb-right">
+                <div class="signal-bars"><div class="signal-bar sb-1"></div><div class="signal-bar sb-2"></div><div class="signal-bar sb-3"></div><div class="signal-bar sb-4"></div></div>
+                <span id="wtNetTxt">5G</span>
+                <span id="wtBatNum">85%</span>
+                <div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="wtBatFill"></div></div><div class="bat-tip"></div></div>
+            </div>
         </div>
         <div class="with-top"><span>←</span><span>Withdrawal Details</span><span style="visibility:hidden;">→</span></div>
         <div class="hero-num-box">
@@ -54,7 +62,7 @@
             let bat = localStorage.getItem('b_bat') || '85';
             document.getElementById('wtBatNum').innerText = bat + "%";
             document.getElementById('wtBatFill').style.width = bat + "%";
-            document.getElementById('wtNet').innerText = localStorage.getItem('b_net') || '5G';
+            document.getElementById('wtNetTxt').innerText = localStorage.getItem('b_net') || '5G';
             document.getElementById('outHero').innerText = localStorage.getItem('b_wthero') || '-771.99 USDT';
             document.getElementById('outTot').innerText = localStorage.getItem('b_wttot') || '773.49665 USDT';
             document.getElementById('outAddr').innerHTML = (localStorage.getItem('b_wtaddr') || 'TX7afK9RjMvC5zHqE7bHn2C6eK5d4cfr5d4c3b2a') + ' 📋';

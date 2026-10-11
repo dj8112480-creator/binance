@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Master Controller</title>
+    <title>Binance Official Simulator Engine</title>
     <style>
         * { box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #181a20; color: #eaecef; padding: 20px 15px; margin: 0; }
-        h1 { color: #f3ba2f; text-align: center; font-size: 22px; margin-bottom: 5px; }
-        .sub { font-size: 12px; color: #848e9c; text-align: center; margin-bottom: 20px; }
-        .box { max-width: 440px; margin: 0 auto; background: #2b3139; padding: 18px; border-radius: 12px; border-left: 4px solid #f3ba2f; box-shadow: 0 4px 15px rgba(0,0,0,0.4); margin-bottom: 20px; }
-        .sec-t { font-size: 13px; font-weight: bold; color: #f3ba2f; margin-bottom: 10px; border-bottom: 1px solid #474f59; padding-bottom: 4px; text-transform: uppercase; }
+        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #0b0e11; color: #eaecef; padding: 20px 15px; margin: 0; }
+        h1 { color: #f3ba2f; text-align: center; font-size: 20px; margin-bottom: 4px; }
+        .sub { font-size: 11.5px; color: #848e9c; text-align: center; margin-bottom: 20px; }
+        .box { max-width: 440px; margin: 0 auto; background: #1e2026; padding: 18px; border-radius: 12px; border: 1px solid #2b3139; margin-bottom: 16px; }
+        .sec-t { font-size: 12.5px; font-weight: bold; color: #f3ba2f; margin-bottom: 10px; border-bottom: 1px solid #2b3139; padding-bottom: 4px; text-transform: uppercase; }
         .fg { margin-bottom: 10px; display: flex; flex-direction: column; }
-        label { font-size: 11.5px; color: #848e9c; margin-bottom: 3px; font-weight: 500; }
-        input { padding: 9px; border-radius: 6px; border: 1px solid #474f59; background: #1e2026; color: white; font-size: 13.5px; }
-        .btn-sub { width: 100%; padding: 13px; background: #f3ba2f; color: #181a20; border: none; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        label { font-size: 11px; color: #848e9c; margin-bottom: 3px; font-weight: 500; }
+        input { padding: 9px; border-radius: 6px; border: 1px solid #474f59; background: #181a20; color: white; font-size: 13px; }
+        .btn-sub { width: 100%; padding: 13px; background: #f3ba2f; color: #181a20; border: none; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         .btn-sub:hover { background: #dfa516; }
         .links-box { max-width: 440px; margin: 0 auto; background: #1e2026; padding: 15px; border-radius: 12px; border: 1px solid #2b3139; text-align: center; }
         .links-box a { display: block; background: #2b3139; color: #f3ba2f; text-decoration: none; padding: 12px; margin: 8px auto; border-radius: 6px; font-weight: bold; border: 1px solid #f3ba2f; max-width: 400px; font-size: 13px; }
@@ -22,46 +22,46 @@
 </head>
 <body>
     <h1>Binance Core Engine</h1>
-    <div class="sub">Set values below, click Submit, then open target links!</div>
+    <div class="sub">Configure & Synchronize All Official Screens</div>
     
     <div class="box">
-        <div class="sec-t">📱 iPhone Status Bar Settings</div>
-        <div class="fg"><label>iPhone Time (e.g., 8:35):</label><input type="text" id="pTime" value="8:35"></div>
-        <div class="fg"><label>Battery Level (%):</label><input type="number" id="pBat" value="85"></div>
-        <div class="fg"><label>Network Tag (e.g., 5G, 4G):</label><input type="text" id="pNet" value="5G"></div>
+        <div class="sec-t">📱 iPhone Status Bar</div>
+        <div class="fg"><label>Time (e.g. 17:45):</label><input type="text" id="pTime" value="17:45"></div>
+        <div class="fg"><label>Battery (%):</label><input type="number" id="pBat" value="85"></div>
+        <div class="fg"><label>Network Tag (e.g. Wi-Fi / 5G):</label><input type="text" id="pNet" value="Wi-Fi"></div>
         
-        <div class="sec-t" style="margin-top:14px;">💰 1. Web3 Wallet Settings</div>
-        <div class="fg"><label>Wallet Balance (USD):</label><input type="text" id="wBal" value="895.00"></div>
+        <div class="sec-t" style="margin-top:14px;">💰 1. Spot/Web3 Wallet Balance</div>
+        <div class="fg"><label>Total USD/USDT Balance:</label><input type="text" id="wBal" value="895.00"></div>
 
-        <div class="sec-t" style="margin-top:14px;">📩 2. Deposit Email Settings</div>
-        <div class="fg"><label>Email Title Date & Time:</label><input type="text" id="eDate" value="2025-04-04 10:43:12"></div>
+        <div class="sec-t" style="margin-top:14px;">📩 2. Deposit Confirmed Email</div>
+        <div class="fg"><label>Email Date & Time (UTC):</label><input type="text" id="eDate" value="2025-04-04 10:43"></div>
         <div class="fg"><label>Deposited USDT Amount:</label><input type="text" id="eAmt" value="773.49665"></div>
 
-        <div class="sec-t" style="margin-top:14px;">📤 3 & 4. Withdrawal Settings</div>
-        <div class="fg"><label>Withdraw Minus Amount (e.g., -771.99 USDT):</label><input type="text" id="wtHero" value="-771.99 USDT"></div>
-        <div class="fg"><label>Total Amount (e.g., 773.49665 USDT):</label><input type="text" id="wtTot" value="773.49665 USDT"></div>
-        <div class="fg"><label>Destination Wallet Address:</label><input type="text" id="wtAddr" value="TX7afK9RjMvC5zHqE7bHn2C6eK5d4cfr5d4c3b2a"></div>
-        <div class="fg"><label>Network Fee (e.g., 1.5 TRX):</label><input type="text" id="wtFee" value="1.5 TRX"></div>
-        <div class="fg"><label>History Date & Time:</label><input type="text" id="wtDate" value="2025-04-04 10:43:12"></div>
+        <div class="sec-t" style="margin-top:14px;">📤 3 & 4. Withdrawal Details</div>
+        <div class="fg"><label>Hero Minus Amount (e.g. -771.99 USDT):</label><input type="text" id="wtHero" value="-771.99 USDT"></div>
+        <div class="fg"><label>Total Amount (e.g. 773.49665 USDT):</label><input type="text" id="wtTot" value="773.49665 USDT"></div>
+        <div class="fg"><label>Destination Address:</label><input type="text" id="wtAddr" value="TX7afK9RjMvC5zHqE7bHn2C6eK5d4cfr5d4c3b2a"></div>
+        <div class="fg"><label>Network Fee:</label><input type="text" id="wtFee" value="1.5 TRX"></div>
+        <div class="fg"><label>Transaction Date & Time:</label><input type="text" id="wtDate" value="2025-04-04 10:43:12"></div>
 
         <button class="btn-sub" onclick="saveData()">Apply & Synchronize Everything</button>
     </div>
 
     <div class="links-box">
-        <p style="color:#848e9c; font-size:12px; margin-top:0;">🔗 Open links after saving:</p>
-        <a href="crypto-wallet.html" target="_blank">🗂️ 1. Web3 Crypto Wallet Screen</a>
-        <a href="binance-deposit-email.html" target="_blank">📬 2. Deposit Email Notification</a>
-        <a href="withdrawal-details.html" target="_blank">📤 3. Withdrawal Details (Hero)</a>
-        <a href="withdrawal-details (1).html" target="_blank">📑 4. Withdrawal Details (List)</a>
+        <p style="color:#848e9c; font-size:12px; margin-top:0;">🔗 Open target links:</p>
+        <a href="crypto-wallet.html" target="_blank">🗂️ 1. Official Spot Wallet View</a>
+        <a href="binance-deposit-email.html" target="_blank">📬 2. In-App/Gmail Deposit Notification</a>
+        <a href="withdrawal-details.html" target="_blank">📤 3. Withdrawal Details (Hero Receipt)</a>
+        <a href="withdrawal-details (1).html" target="_blank">📑 4. Withdrawal History (List View)</a>
     </div>
 
     <script>
         window.onload = function() {
-            document.getElementById('pTime').value = localStorage.getItem('b_time') || '8:35';
+            document.getElementById('pTime').value = localStorage.getItem('b_time') || '17:45';
             document.getElementById('pBat').value = localStorage.getItem('b_bat') || '85';
-            document.getElementById('pNet').value = localStorage.getItem('b_net') || '5G';
+            document.getElementById('pNet').value = localStorage.getItem('b_net') || 'Wi-Fi';
             document.getElementById('wBal').value = localStorage.getItem('b_wbal') || '895.00';
-            document.getElementById('eDate').value = localStorage.getItem('b_edate') || '2025-04-04 10:43:12';
+            document.getElementById('eDate').value = localStorage.getItem('b_edate') || '2025-04-04 10:43';
             document.getElementById('eAmt').value = localStorage.getItem('b_eamt') || '773.49665';
             document.getElementById('wtHero').value = localStorage.getItem('b_wthero') || '-771.99 USDT';
             document.getElementById('wtTot').value = localStorage.getItem('b_wttot') || '773.49665 USDT';
@@ -81,7 +81,7 @@
             localStorage.setItem('b_wtaddr', document.getElementById('wtAddr').value);
             localStorage.setItem('b_wtfee', document.getElementById('wtFee').value);
             localStorage.setItem('b_wtdate', document.getElementById('wtDate').value);
-            alert("✅ All 4 Target Pages Synchronized! Open links now.");
+            alert("✅ Synced! Refresh your target pages.");
         }
     </script>
 </body>

@@ -7,8 +7,11 @@
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #121214; color: #ffffff; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
         .phone-canvas { width: 100%; max-width: 412px; min-height: 100vh; background-color: #181a20; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.6); }
-        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; letter-spacing: -0.3px; }
         .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+        .signal-bars { display: flex; align-items: flex-end; gap: 1.5px; height: 11px; margin-right: 2px; }
+        .signal-bar { width: 2.5px; background: #fff; border-radius: 0.5px; }
+        .sb-1 { height: 3px; } .sb-2 { height: 5px; } .sb-3 { height: 7.5px; } .sb-4 { height: 10px; }
         .ios-battery { display: flex; align-items: center; gap: 3px; }
         .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #fff; padding: 1.5px; display: flex; align-items: center; }
         .bat-fill { height: 100%; border-radius: 1.5px; background: #fff; }
@@ -26,7 +29,12 @@
     <div class="phone-canvas">
         <div class="status-bar">
             <span id="bkTime">8:35</span>
-            <div class="sb-right"><span id="bkNet">5G</span> <span id="bkBatNum">85%</span><div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="bkBatFill"></div></div><div class="bat-tip"></div></div></div>
+            <div class="sb-right">
+                <div class="signal-bars"><div class="signal-bar sb-1"></div><div class="signal-bar sb-2"></div><div class="signal-bar sb-3"></div><div class="signal-bar sb-4"></div></div>
+                <span id="bkNetTxt">5G</span>
+                <span id="bkBatNum">85%</span>
+                <div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="bkBatFill"></div></div><div class="bat-tip"></div></div>
+            </div>
         </div>
         <div class="app-header">← Withdrawal Details</div>
         <div class="amount-section">
@@ -46,7 +54,7 @@
             let bat = localStorage.getItem('b_bat') || '85';
             document.getElementById('bkBatNum').innerText = bat + "%";
             document.getElementById('bkBatFill').style.width = bat + "%";
-            document.getElementById('bkNet').innerText = localStorage.getItem('b_net') || '5G';
+            document.getElementById('bkNetTxt').innerText = localStorage.getItem('b_net') || '5G';
             let rawHero = localStorage.getItem('b_wthero') || '-771.99 USDT';
             document.getElementById('detHero').innerText = rawHero.replace(' USDT', '');
             document.getElementById('detDate').innerText = localStorage.getItem('b_wtdate') || '2025-04-04 10:43:12';

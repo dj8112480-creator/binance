@@ -3,81 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Binance Web3 Wallet</title>
+    <title>Binance Wallet</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
-        .iphone-frame { width: 100%; max-width: 412px; min-height: 100vh; background: #ffffff; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1); position: relative; }
-        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #000000; background: #ffffff; letter-spacing: -0.3px; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #0b0e11; color: #eaecef; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .phone-canvas { width: 100%; max-width: 412px; min-height: 100vh; background-color: #181a20; display: flex; flex-direction: column; position: relative; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; letter-spacing: -0.3px; }
         .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
         .signal-bars { display: flex; align-items: flex-end; gap: 1.5px; height: 11px; margin-right: 2px; }
-        .signal-bar { width: 2.5px; background: #000; border-radius: 0.5px; }
+        .signal-bar { width: 2.5px; background: #fff; border-radius: 0.5px; }
         .sb-1 { height: 3px; } .sb-2 { height: 5px; } .sb-3 { height: 7.5px; } .sb-4 { height: 10px; }
         .ios-battery { display: flex; align-items: center; gap: 3px; }
-        .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #000; padding: 1.5px; display: flex; align-items: center; }
-        .bat-fill { height: 100%; border-radius: 1.5px; background: #000; }
-        .bat-tip { width: 1.5px; height: 4px; background: #000; border-radius: 0 1px 1px 0; }
-        .header-nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; }
-        .logo-box { background: #fcd435; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .tab-switch { display: flex; background: #eaecef; padding: 2px; border-radius: 8px; }
-        .tab-item { padding: 5px 12px; font-size: 13px; font-weight: 600; border-radius: 6px; color: #767f8d; }
-        .tab-active { background: #ffffff; color: #1e2026; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .main-pane { padding: 16px; background: #fff; flex-grow: 1; }
-        .acc-row { font-size: 12.5px; color: #929aa5; margin-bottom: 6px; }
-        .big-bal { font-size: 36px; font-weight: 800; color: #1e2026; letter-spacing: -0.8px; margin-bottom: 2px; }
-        .growth { color: #0ecb81; font-size: 13px; font-weight: 600; margin-bottom: 22px; }
-        .grid-actions { display: flex; justify-content: space-between; text-align: center; margin-bottom: 22px; font-size: 12px; font-weight: 500; color: #1e2026; }
-        .node-circle { width: 46px; height: 44px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 5px; }
-        .promo-card { background: #fef8e6; border-radius: 12px; padding: 13px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; color: #000; }
-        .token-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
-        .back-link { display: block; text-align: center; padding: 12px; background: #181a20; color: #f3ba2f; text-decoration: none; font-size: 12px; font-weight: bold; }
+        .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #fff; padding: 1.5px; display: flex; align-items: center; }
+        .bat-fill { height: 100%; border-radius: 1.5px; background: #fff; }
+        .bat-tip { width: 1.5px; height: 4px; background: #fff; border-radius: 0 1px 1px 0; }
+        
+        .header-nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #181a20; border-bottom: 1px solid #2b3139; }
+        .logo-box { background: #fcd435; color: #181a20; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; }
+        .tab-switch { display: flex; background: #2b3139; padding: 2px; border-radius: 6px; }
+        .tab-item { padding: 5px 12px; font-size: 13px; font-weight: 600; border-radius: 4px; color: #848e9c; }
+        .tab-active { background: #181a20; color: #ffffff; }
+        
+        .balance-section { padding: 22px 20px; background: #1e2026; }
+        .lbl-title { color: #848e9c; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+        .crypto-big { font-size: 30px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .fiat-sub { color: #848e9c; font-size: 13px; margin-top: 4px; font-weight: 500; }
+        
+        .grid-actions { display: flex; justify-content: space-around; padding: 18px 10px; background: #181a20; border-bottom: 1px solid #2b3139; }
+        .action-item { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: #eaecef; font-weight: 500; }
+        .action-circle { width: 42px; height: 42px; background: #2b3139; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #f3ba2f; }
+        
+        .list-section { padding: 16px 20px; flex-grow: 1; background: #181a20; }
+        .sec-header { font-size: 14px; font-weight: 700; color: #ffffff; margin-bottom: 12px; }
+        .coin-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #2b3139; }
+        .coin-left { display: flex; align-items: center; gap: 12px; }
+        .coin-icon { width: 36px; height: 36px; border-radius: 50%; background: #f3ba2f; color: #181a20; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .coin-name { font-weight: 700; font-size: 15px; color: #fff; }
+        .coin-sub { color: #848e9c; font-size: 11px; margin-top: 2px; }
+        .coin-right { text-align: right; }
+        .coin-amt { font-weight: 700; font-size: 15px; color: #fff; }
+        .coin-val { color: #848e9c; font-size: 11.5px; margin-top: 2px; }
+        .back-link { display: block; text-align: center; padding: 12px; background: #1e2026; color: #f3ba2f; text-decoration: none; font-size: 12px; font-weight: bold; border-top: 1px solid #2b3139; }
     </style>
 </head>
 <body>
-    <div class="iphone-frame">
+    <div class="phone-canvas">
         <div class="status-bar">
-            <span id="sTime">8:35</span>
-            <div class="sb-right">
-                <div class="signal-bars"><div class="signal-bar sb-1"></div><div class="signal-bar sb-2"></div><div class="signal-bar sb-3"></div><div class="signal-bar sb-4"></div></div>
-                <span id="sNetTxt">5G</span>
-                <span id="sBatNum">85%</span>
-                <div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="sBatFill"></div></div><div class="bat-tip"></div></div>
-            </div>
+            <span id="sTime">17:45</span>
+            <div class="sb-right"><div class="signal-bars"><div class="signal-bar sb-1"></div><div class="signal-bar sb-2"></div><div class="signal-bar sb-3"></div><div class="signal-bar sb-4"></div></div><span id="sNetTxt">Wi-Fi</span> <span id="sBatNum">85%</span><div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="sBatFill"></div></div><div class="bat-tip"></div></div></div>
         </div>
         <div class="header-nav">
-            <div class="logo-box">🔶</div>
-            <div class="tab-switch"><div class="tab-item">Exchange</div><div class="tab-item tab-active">Web3</div></div>
-            <div style="font-weight:bold; font-size:16px;">⛶ 🔍</div>
+            <div class="logo-box">B</div>
+            <div class="tab-switch"><div class="tab-item tab-active">Spot</div><div class="tab-item">Funding</div><div class="tab-item">Futures</div></div>
+            <div style="font-weight:bold; font-size:16px; color:#eaecef;">🔍 📊</div>
         </div>
-        <div class="main-pane">
-            <div class="acc-row">▾ 0x78...Gr4P 📋</div>
-            <div class="big-bal">$<span id="outBal">895.00</span></div>
-            <div class="growth">+0.21%</div>
-            <div class="grid-actions">
-                <div><div class="node-circle">📤</div>Send</div>
-                <div><div class="node-circle">📥</div>Receive</div>
-                <div><div class="node-circle">⇄</div>Transfer</div>
-                <div><div class="node-circle">•••</div>More</div>
-            </div>
-            <div class="promo-card">
-                <div><div style="font-size:11.5px; color:#929aa5;">$500,000 Exclusive Airdrop</div><div style="font-size:13.5px; font-weight:700; margin:2px 0;">Swap to win up to 1 BTC</div><span style="color:#dfa516; font-size:12.5px; font-weight:600;">Join Now</span></div>
-                <div style="font-size:30px;">🪙</div>
-            </div>
-            <div style="font-size:15px; font-weight:700; border-bottom:2px solid #f5f5f5; padding-bottom:8px; margin-bottom:12px; color:#1e2026;">Crypto</div>
-            <div class="token-row">
-                <div style="display:flex; align-items:center; gap:12px;"><div style="background:#f3ba2f; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;">🔶</div><div><div style="font-weight:700; color:#1e2026; font-size:15px;">BNB</div><div style="font-size:12px; color:#0ecb81;">$308.83 +2.38%</div></div></div>
-                <div style="text-align:right;"><div style="font-weight:700; color:#1e2026; font-size:15px;">5.32501</div><div style="font-size:12px; color:#929aa5;">$1,643.07</div></div>
+        <div class="balance-section">
+            <div class="lbl-title"><span>Total Balance</span> <span>Hide 👁️</span></div>
+            <div><span class="crypto-big" id="outBTC">0.01443548</span> <span style="font-size:15px; color:#f3ba2f; font-weight:bold;">BTC</span></div>
+            <div class="fiat-sub">≈ $<span id="outUSD">895.00</span> USD</div>
+        </div>
+        <div class="grid-actions">
+            <div class="action-item"><div class="action-circle">📥</div>Deposit</div>
+            <div class="action-item"><div class="action-circle">📤</div>Withdraw</div>
+            <div class="action-item"><div class="action-circle">⇄</div>Transfer</div>
+            <div class="action-item"><div class="action-circle">🕒</div>History</div>
+        </div>
+        <div class="list-section">
+            <div class="sec-header">Crypto Assets</div>
+            <div class="coin-row">
+                <div class="coin-left"><div class="coin-icon">T</div><div><div class="coin-name">USDT</div><div class="coin-sub">TetherUS</div></div></div>
+                <div class="coin-right"><div class="coin-amt" id="outUSDT">895.00</div><div class="coin-val">$<span id="outUSDTVal">895.00</span></div></div>
             </div>
         </div>
         <a href="index.html" class="back-link">← Back to Master Controller</a>
     </div>
     <script>
         window.onload = function() {
-            document.getElementById('sTime').innerText = localStorage.getItem('b_time') || '8:35';
+            document.getElementById('sTime').innerText = localStorage.getItem('b_time') || '17:45';
             let bat = localStorage.getItem('b_bat') || '85';
             document.getElementById('sBatNum').innerText = bat + "%";
             document.getElementById('sBatFill').style.width = bat + "%";
-            document.getElementById('sNetTxt').innerText = localStorage.getItem('b_net') || '5G';
-            document.getElementById('outBal').innerText = localStorage.getItem('b_wbal') || '895.00';
+            document.getElementById('sNetTxt').innerText = localStorage.getItem('b_net') || 'Wi-Fi';
+            let rawBal = localStorage.getItem('b_wbal') || '895.00';
+            let cleanNum = parseFloat(rawBal.replace(/[^0-9.]/g, '')) || 895;
+            document.getElementById('outUSD').innerText = cleanNum.toFixed(2);
+            document.getElementById('outUSDT').innerText = cleanNum.toFixed(2);
+            document.getElementById('outUSDTVal').innerText = cleanNum.toFixed(2);
+            document.getElementById('outBTC').innerText = (cleanNum / 62000).toFixed(8);
         }
     </script>
 </body>

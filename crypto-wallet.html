@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Binance Web3 Wallet</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #f7f7f7; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .iphone-frame { width: 100%; max-width: 412px; min-height: 100vh; background: #ffffff; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.1); position: relative; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #000000; background: #ffffff; }
+        .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+        .ios-battery { display: flex; align-items: center; gap: 3px; }
+        .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #000; padding: 1.5px; display: flex; align-items: center; }
+        .bat-fill { height: 100%; border-radius: 1.5px; background: #000; }
+        .bat-tip { width: 1.5px; height: 4px; background: #000; border-radius: 0 1px 1px 0; }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #fff; }
+        .logo-box { background: #fcd435; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .tab-switch { display: flex; background: #eaecef; padding: 2px; border-radius: 8px; }
+        .tab-item { padding: 5px 12px; font-size: 13px; font-weight: 600; border-radius: 6px; color: #767f8d; }
+        .tab-active { background: #ffffff; color: #1e2026; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .main-pane { padding: 16px; background: #fff; flex-grow: 1; }
+        .acc-row { font-size: 12.5px; color: #929aa5; margin-bottom: 6px; }
+        .big-bal { font-size: 36px; font-weight: 800; color: #1e2026; letter-spacing: -0.8px; margin-bottom: 2px; }
+        .growth { color: #0ecb81; font-size: 13px; font-weight: 600; margin-bottom: 22px; }
+        .grid-actions { display: flex; justify-content: space-between; text-align: center; margin-bottom: 22px; font-size: 12px; font-weight: 500; color: #1e2026; }
+        .node-circle { width: 46px; height: 44px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 5px; }
+        .promo-card { background: #fef8e6; border-radius: 12px; padding: 13px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; color: #000; }
+        .token-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+        .back-link { display: block; text-align: center; padding: 12px; background: #181a20; color: #f3ba2f; text-decoration: none; font-size: 12px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="status-bar">
+            <span id="sTime">8:35</span>
+            <div class="sb-right"><span id="sNet">5G</span> <span id="sBatNum">85%</span><div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="sBatFill"></div></div><div class="bat-tip"></div></div></div>
+        </div>
+        <div class="header-nav">
+            <div class="logo-box">🔶</div>
+            <div class="tab-switch"><div class="tab-item">Exchange</div><div class="tab-item tab-active">Web3</div></div>
+            <div style="font-weight:bold; font-size:16px;">⛶ 🔍</div>
+        </div>
+        <div class="main-pane">
+            <div class="acc-row">▾ 0x78...Gr4P 📋</div>
+            <div class="big-bal">$<span id="outBal">895.00</span></div>
+            <div class="growth">+0.21%</div>
+            <div class="grid-actions">
+                <div><div class="node-circle">📤</div>Send</div>
+                <div><div class="node-circle">📥</div>Receive</div>
+                <div><div class="node-circle">⇄</div>Transfer</div>
+                <div><div class="node-circle">•••</div>More</div>
+            </div>
+            <div class="promo-card">
+                <div><div style="font-size:11.5px; color:#929aa5;">$500,000 Exclusive Airdrop</div><div style="font-size:13.5px; font-weight:700; margin:2px 0;">Swap to win up to 1 BTC</div><span style="color:#dfa516; font-size:12.5px; font-weight:600;">Join Now</span></div>
+                <div style="font-size:30px;">🪙</div>
+            </div>
+            <div style="font-size:15px; font-weight:700; border-bottom:2px solid #f5f5f5; padding-bottom:8px; margin-bottom:12px; color:#1e2026;">Crypto</div>
+            <div class="token-row">
+                <div style="display:flex; align-items:center; gap:12px;"><div style="background:#f3ba2f; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white;">🔶</div><div><div style="font-weight:700; font-size:15px; color:#1e2026;">BNB</div><div style="font-size:12px; color:#0ecb81;">$308.83 +2.38%</div></div></div>
+                <div style="text-align:right;"><div style="font-weight:700; font-size:15px; color:#1e2026;">5.32501</div><div style="font-size:12px; color:#929aa5;">$1,643.07</div></div>
+            </div>
+        </div>
+        <a href="index.html" class="back-link">← Back to Master Controller</a>
+    </div>
+    <script>
+        window.onload = function() {
+            document.getElementById('sTime').innerText = localStorage.getItem('b_time') || '8:35';
+            let bat = localStorage.getItem('b_bat') || '85';
+            document.getElementById('sBatNum').innerText = bat + "%";
+            document.getElementById('sBatFill').style.width = bat + "%";
+            document.getElementById('sNet').innerText = localStorage.getItem('b_net') || '5G';
+            document.getElementById('outBal').innerText = localStorage.getItem('b_wbal') || '895.00';
+        }
+    </script>
+</body>
+</html>

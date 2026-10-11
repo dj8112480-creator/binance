@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Withdrawal Details List</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; background-color: #121214; color: #ffffff; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .phone-canvas { width: 100%; max-width: 412px; min-height: 100vh; background-color: #181a20; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(0,0,0,0.6); }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 22px 8px 22px; font-size: 14px; font-weight: 600; color: #ffffff; background: #181a20; }
+        .sb-right { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+        .ios-battery { display: flex; align-items: center; gap: 3px; }
+        .bat-body { width: 24px; height: 11.5px; border-radius: 3.5px; border: 1px solid #fff; padding: 1.5px; display: flex; align-items: center; }
+        .bat-fill { height: 100%; border-radius: 1.5px; background: #fff; }
+        .bat-tip { width: 1.5px; height: 4px; background: #fff; border-radius: 0 1px 1px 0; }
+        .app-header { padding: 15px; font-size: 16px; font-weight: 600; border-bottom: 1px solid #2b3139; }
+        .amount-section { text-align: center; padding: 30px 0; border-bottom: 1px solid #2b3139; }
+        .amount-num { font-size: 34px; font-weight: 700; color: #ffffff; }
+        .status-badge { display: inline-block; background: rgba(14, 203, 129, 0.12); color: #0ecb81; font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 4px; margin-top: 8px; }
+        .details-list { padding: 12px 20px; flex-grow: 1; }
+        .row-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #2b3139; font-size: 13.5px; }
+        .back-link { display: block; text-align: center; padding: 12px; background: #121214; color: #f3ba2f; text-decoration: none; font-size: 12px; font-weight: bold; border-top: 1px solid #2b3139; }
+    </style>
+</head>
+<body>
+    <div class="phone-canvas">
+        <div class="status-bar">
+            <span id="bkTime">8:35</span>
+            <div class="sb-right"><span id="bkNet">5G</span> <span id="bkBatNum">85%</span><div class="ios-battery"><div class="bat-body"><div class="bat-fill" id="bkBatFill"></div></div><div class="bat-tip"></div></div></div>
+        </div>
+        <div class="app-header">← Withdrawal Details</div>
+        <div class="amount-section">
+            <div><span class="amount-num" id="detHero">-771.99</span><span style="font-size:16px; margin-left:5px; color:#f3ba2f;">USDT</span></div>
+            <div class="status-badge">Completed</div>
+        </div>
+        <div class="details-list">
+            <div class="row-item"><span style="color:#848e9c;">Status</span><span style="color: #0ecb81; font-weight: bold;">Completed</span></div>
+            <div class="row-item"><span style="color:#848e9c;">Date</span><span id="detDate" style="font-weight:500;">2025-04-04 10:43:12</span></div>
+            <div class="row-item" style="border:none;"><span style="color:#848e9c;">Network</span><span style="font-weight:500;">TRX (TRC20)</span></div>
+        </div>
+        <a href="index.html" class="back-link">← Back to Master Controller</a>
+    </div>
+    <script>
+        window.onload = function() {
+            document.getElementById('bkTime').innerText = localStorage.getItem('b_time') || '8:35';
+            let bat = localStorage.getItem('b_bat') || '85';
+            document.getElementById('bkBatNum').innerText = bat + "%";
+            document.getElementById('bkBatFill').style.width = bat + "%";
+            document.getElementById('bkNet').innerText = localStorage.getItem('b_net') || '5G';
+            let rawHero = localStorage.getItem('b_wthero') || '-771.99 USDT';
+            document.getElementById('detHero').innerText = rawHero.replace(' USDT', '');
+            document.getElementById('detDate').innerText = localStorage.getItem('b_wtdate') || '2025-04-04 10:43:12';
+        }
+    </script>
+</body>
+</html>
